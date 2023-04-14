@@ -1,0 +1,67 @@
+body {
+    background-image: url('../../assets/login.jpg');
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 17rem;
+}
+
+h1 {
+    font-size: 38px;
+}
+
+.container .card {
+    background-color: rgba(255,255,255,0.42);
+    border-radius: 20px 0px;
+    padding:  20px 15px;
+    text-align: center;
+}
+
+.image img {
+    width: 85px;
+    height: 85px;
+}
+
+.container .card input {
+    width: 80%;
+    text-align: center;
+    padding: 5px;
+    margin: 10px;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    font-size: 16px;
+}
+
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
+
+input[type=number] { 
+    -moz-appearance: textfield;
+    appearance: textfield;
+ 
+}
+
+.container .card button {
+    margin: 5px;
+    background-color: #191234;
+    color: #FFF;
+    padding: 5px 25px;
+    border-radius: 50px;
+    border: 0px;
+    font-weight: 700;
+    font-size: 16px;
+}
