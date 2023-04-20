@@ -1,0 +1,21 @@
+.telaDashboard {
+    background: #D9D9D9;
+}
+
+.header {
+    background: #191234;
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.homeIcon {
+    display: flex;
+    align-items: center;
+}
+
+.saudacao p {
+    color: #FFF;
+    font-weight: 600;
+}
