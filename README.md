@@ -12,6 +12,8 @@
   - Sensores de movimento, contato (em portas e janelas) e temperatura (em caso de incêndio);
   - Central de notificação com histórico de todos os acionamentos de alarmes.
 
+<img width="200" src="https://cdn.discordapp.com/attachments/1077653983381946421/1099025779037319249/D6735F0B-9F8A-4F53-AE09-A880FBEE67AD.jpg"/>
+
 #### EM DESENVOLVIMENTO
 
 
