@@ -1,7 +1,7 @@
 # AVAPU: SISTEMA DE SEGURANÇA INTEGRADO
 
 ## Objetivos:
-  - Com base na pesuisa realizada em campo na ilha de cotijuba e a análise da falta de infraestrutura da sede do MMIB, decidimos desenvolver uma solução com os seguintes propósitos:
+  - Com base na pesquisa realizada em campo na ilha de cotijuba e a análise da falta de infraestrutura da sede do MMIB, decidimos desenvolver uma solução com os seguintes propósitos:
   
     - Contornar a falta de conectividade com wi-fi e dados móveis do local;
     - Proporcionar um sistema de segurnça com baixo custo e que consiga realizar uma conexão remota do sistema aos aparelhos dos usuários do produto.
