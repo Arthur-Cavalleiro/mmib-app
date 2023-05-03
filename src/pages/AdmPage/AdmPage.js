@@ -32,7 +32,7 @@ const AdmPage = () => {
             </header>
 
             <section className="notificacoes">
-                
+                {}
             </section>
         </div>
     );
