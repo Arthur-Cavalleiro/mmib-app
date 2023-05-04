@@ -21,23 +21,6 @@ const LoginPage = () => {
             })
     }, []);
 
-    /*
-    const atualizarArquivoJson = (novosDados) => {
-        fetch('./data.json', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(novosDados),
-        })
-          .then((res) => {
-            console.log(res.text());
-            // Faça algo com a resposta
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    */
-
     const aoClicar = (evento) => {
 
         // alert("Seu pin é: " + pin);

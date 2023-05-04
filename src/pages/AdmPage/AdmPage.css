@@ -1,5 +1,7 @@
 .telaDashboard {
     background: #D9D9D9;
+    height: 100vh;
+    overflow: visible;
 }
 
 .header {
@@ -8,6 +10,7 @@
     padding: 10px;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .homeIcon {
@@ -18,4 +21,22 @@
 .saudacao p {
     color: #FFF;
     font-weight: 600;
+}
+
+.tituloNotificacao h1 {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.notificacoes {
+    margin: 0 auto;
+    width: 300px;
+    height: 50vh;
+    overflow: auto;
+    border-bottom: 1px solid black;
+    box-shadow: 0 4px 2px -2px gray;
+    /* display: flex; */
+    /* justify-content: center; */
 }
