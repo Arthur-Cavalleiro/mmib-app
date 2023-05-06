@@ -1,0 +1,31 @@
+.notificacao {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    margin-bottom: 7px;
+}
+
+/* .notificacao .textoNotificacao {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+} */
+
+.notificacao .infoTextoNotificacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notificacao .textoNotificacao {
+    width: 100%;
+}
+
+.notificacao img {
+    margin: 0 10px 0 0;
+}
+
+.notificacao .textoNotificacao h2 {
+    font-size: 20px;
+    font-weight: 700;
+}

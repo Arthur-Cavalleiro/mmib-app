@@ -1,0 +1,26 @@
+.statusContainer {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    padding: 10px 0;
+}
+
+.statusContainer p {
+    font-weight: 600;
+}
+
+.statusContainer div {
+    margin: 0 10px;
+}
+
+.divStatus {
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: red;
+    width: 20px;
+    height: 20px;
+}
+
+.statusContainer {
+    width: calc(50% - 2px);
+}

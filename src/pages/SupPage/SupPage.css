@@ -1,0 +1,101 @@
+.telaSuporte {
+    background-color: #D9D9D9;
+    height: 100vh;
+    overflow: visible;
+}
+
+.headerSup {
+    background: #191234;
+    display: flex;
+    padding: 10px;
+    /* justify-content: center; */
+    text-align: center;
+    align-items: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.supText {
+    font-weight: 600;
+}
+
+.linkHeaderSup {
+    height: 23px;
+}
+
+.linkHeaderSup img {
+    /* width: 20px; */
+    height: 23px;
+}
+
+.headerSup p {
+    color: white;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.conteudoSup{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
+}
+
+.conteudoSup img {
+    margin: 20px 0;
+}
+
+.contatosSup h3{
+    margin: 6px 0;
+    font-size: 20px;
+}
+
+.contatosSup div {
+    margin-bottom: 6px;
+}
+
+.conteudoSup p {
+    margin-left: 12px;
+}
+
+.contatosSup p:nth-child(0n + 1) {
+    font-weight: 600;
+    font-size: 18px;
+}
+/*
+.formSup label {
+    font-weight: 600;
+    display: block;
+}
+
+.formSup input, .formSup textarea{
+    background-color: white;
+    border: none;
+    width: 270px;
+    margin: 4px 0 14px 0;
+    padding: 2px 8px;
+    outline: none;
+}
+
+.formSup input {
+    height: 20px;
+}
+
+.formSup textarea{
+    max-width: 270px;
+    min-width: 270px;
+    height: 120px;
+    min-height: 20px;
+}
+
+.formSup button {
+    background-color: #191234;
+    color: #FFF;
+    padding: 5px 80px;
+    border-radius: 50px;
+    border: 0px;
+    display: block;
+    margin: 0 auto;
+    font-weight: 700;
+    font-size: 14px;
+} */
