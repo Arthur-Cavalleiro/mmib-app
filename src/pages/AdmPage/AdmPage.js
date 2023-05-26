@@ -4,7 +4,7 @@ import homeSvg from '../../assets/home.svg';
 import Notificacao from "../../components/Notificacao/Notificacao";
 import Status from "../../components/Status/Status";
 import { Link } from "react-router-dom";
-// import mqtt from 'mqtt';
+import mqtt from 'mqtt';
 
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -16,96 +16,96 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const AdmPage = () => {
-    // const [client, setClient] = useState(null);
-    // const [isSub, setIsSub] = useState(false);
-    // const [connectStatus, setConnectStatus] = useState("");
-    // const [payload, setPayload] = useState(null);
     const [notify, setNotify] = useState([]);
     const [isAlarmActive, setIsAlarmActive] = useState(false);
     const [buttonColor, setButtonColor] = useState("");
     const [textButton, setTextButton] = useState("Ligado");
-    // const [name, setName] = useState('');
+    const [name, setName] = useState('');
+    const [client, setClient] = useState(null);
+    const [isSub, setIsSub] = useState(false);
+    const [connectStatus, setConnectStatus] = useState("");
+    const [payload, setPayload] = useState(null);
   
-    // const mqttConnect = () => {
-    //   setConnectStatus('Connecting');
-    //   const mqttClient = mqtt.connect({
-    //     host: 'broker.emqx.io',
-    //     port: 1883,
-    //     protocolVersion: 5,
-    //     clientId: 'testeDHT11',
-    //     username: 'mel',
-    //     password: '123',
-    //     clean: true,
-    //     connectTimeout: 10,
-    //   });
-    //   setClient(mqttClient);
-    // };
+    const mqttConnect = () => {
+      setConnectStatus('Connecting');
+      const mqttClient = mqtt.connect({
+        host: 'broker.emqx.io',
+        port: 1883,
+        protocolVersion: 5,
+        clientId: 'testeDHT11',
+        username: 'mel',
+        password: '123',
+        clean: true,
+        connectTimeout: 10,
+      });
+      setClient(mqttClient);
+    };
 
-    // const mqttSub = (subscription) => {
-    //     if (client) {
-    //       const { topic, qos } = subscription;
-    //       client.subscribe(topic, { qos }, (error) => {
-    //         if (error) {
-    //           console.log('Subscribe to topics error', error);
-    //           return;
-    //         }
-    //         setIsSub(true);
-    //       });
-    //     }
-    // };
+    const mqttSub = (subscription) => {
+        if (client) {
+          const { topic, qos } = subscription;
+          client.subscribe(topic, { qos }, (error) => {
+            if (error) {
+              console.log('Subscribe to topics error', error);
+              return;
+            }
+            setIsSub(true);
+          });
+        }
+    };
     
-    // const mqttUnSub = (subscription) => {
-    //     if (client) {
-    //       const { topic } = subscription;
-    //       client.unsubscribe(topic, (error) => {
-    //         if (error) {
-    //           console.log('Unsubscribe error', error);
-    //           return;
-    //         }
-    //         setIsSub(false);
-    //       });
-    //     }
-    // };
+    const mqttUnSub = (subscription) => {
+        if (client) {
+          const { topic } = subscription;
+          client.unsubscribe(topic, (error) => {
+            if (error) {
+              console.log('Unsubscribe error', error);
+              return;
+            }
+            setIsSub(false);
+          });
+        }
+    };
 
-    //   const mqttPublish = (context) => {
-    //     if (client) {
-    //       const { topic, qos, payload } = context;
-    //       client.publish(topic, payload, { qos }, error => {
-    //         if (error) {
-    //           console.log('Publish error: ', error);
-    //         }
-    //       });
-    //     }
-    // };
+      const mqttPublish = (context) => {
+        if (client) {
+          const { topic, qos, payload } = context;
+          client.publish(topic, payload, { qos }, error => {
+            if (error) {
+              console.log('Publish error: ', error);
+            }
+          });
+        }
+    };
 
-    // const mqttDisconnect = () => {
-    //     if (client) {
-    //       client.end(() => {
-    //         setConnectStatus('Connect');
-    //       });
-    //     }
-    // }
+    const mqttDisconnect = () => {
+        if (client) {
+          client.end(() => {
+            setConnectStatus('Connect');
+          });
+        }
+    }
 
 
-    // useEffect(() => {
-    //   if (client) {
-    //     console.log(client);
-    //     client.on('connect', () => {
-    //       setConnectStatus('Connected');
-    //     });
-    //     client.on('error', (err) => {
-    //       console.error('Connection error: ', err);
-    //       client.end();
-    //     });
-    //     client.on('reconnect', () => {
-    //       setConnectStatus('Reconnecting');
-    //     });
-    //     client.on('message', (topic, message) => {
-    //       const payload = { topic, message: message.toString() };
-    //       setPayload(payload);
-    //     });
-    //   }
-    // }, [client]);
+    useEffect(() => {
+      if (client) {
+        console.log(client);
+        client.on('connect', () => {
+          setConnectStatus('Connected');
+        });
+        client.on('error', (err) => {
+          console.error('Connection error: ', err);
+          client.end();
+        });
+        client.on('reconnect', () => {
+          setConnectStatus('Reconnecting');
+        });
+        client.on('message', (topic, message) => {
+          const payload = { topic, message: message.toString() };
+          setPayload(payload);
+        });
+      }
+    }, [client]);
 
     useEffect(() => {
         fetch('./data.json', {
