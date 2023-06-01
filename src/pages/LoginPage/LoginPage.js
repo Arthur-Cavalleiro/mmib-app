@@ -73,7 +73,7 @@ const LoginPage = () => {
                         <input
                             maxLength={5}
                             onKeyDown={limitarInput}
-                            type="text"
+                            type="password"
                             inputMode='numeric'
                             value={pin}
                             onChange={valor => setPin(valor.target.value)}

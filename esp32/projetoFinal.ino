@@ -5,23 +5,28 @@
 
 // WiFi
 const char *ssid = "mel"; // Cria a variavel ssid onde sera armarzenado o nome do WIFI que o ESP se conectara
-const char *password = "12345011";  // Cria a variavel password onde sera armarzenado a sebga do WIFI que o ESP se conectara
+const char *password = "123456011";  // Cria a variavel password onde sera armarzenado a sebga do WIFI que o ESP se conectara
 
 // MQTT Broker
 const char *mqtt_broker = "broker.emqx.io"; // Cria a variavel mqtt_broker onde fica armazenado o URL do Broker
-const char *topic = "casa/temperatura"; // Cria a variavel topic onde fica armazendo o primeiro Topico a qual o ESP se inscrevera no Broker
+const char *topic = "casa/corredorPrincipal"; // Cria a variavel topic onde fica armazendo o primeiro Topico a qual o ESP se inscrevera no Broker
 const char *mqtt_username = "mel"; // Cria a variavel mqtt_username onde fica armazenado o login que sera usado para conectar no Broker
 const char *mqtt_password = "123"; // Cria a variavel mqtt_password onde fica armazenado a senha que sera usado para conectar no Broker
 const int mqtt_port = 1883; // Criar a variavel mqtt_port onde ficara a armazenado a porta onde o Broker estar localizada
 
-bool estadoled = 0; // variavel de controle do estado do led
 
-#define DHTPIN 22 // declara a pino de saida como o D0 que e tem o GPO 16
+
+#define DHTPIN 22
 #define DHTTYPE DHT11
 #define DEBUG
 const int pir = 3;
 const int reed = 19;
-String msg; // Criar a variavel do tipo String msg
+
+unsigned long lastMsg = 0;
+#define MSG_BUFFER_SIZE (50)
+
+int value = 0;
+String msg;
 DHT dht(DHTPIN, DHTTYPE);
 
 WiFiClient espClient; // Criar a variavel que sera usada para conectar no WIFI
@@ -59,93 +64,89 @@ void setup() {
 
   client.publish(topic, "Ola Aqui e o ESP"); // Publica no topico defino A mesagem Ola Null/ESP
   client.subscribe(topic);
-  
+
 }
 
 void callback(char *topic, byte *payload, unsigned int length) { // Caso tenha uma mensagem do broker
-//  Serial.print("Mensagem publica no Topico: "); // Mostrar no monitor serial o texto Mensagem publica no Topico:
-//  Serial.println(topic); // Mostrar no monitor serial o Topico
-//  Serial.print("Mesagem:"); // Mostrar no monitor serial o texto Mensagem:
-//
-//  String msg; // Reseta a messagem para que nao haja erro
-//
-//  for (int i = 0; i < length; i++) { // Cria um For para receber a messagem
-//    Serial.print((char) payload[i]); // Mostra no monitor seril cada letra da mesagem
-//    char c = ((char) payload[i]); // Amarzena as letras na variavel c
-//    msg += c; // Armazena as letras para criar a mesagem
-//  }
 
-//armazena msg recebida em uma sring
-  payload[length] = '\0';
-  String strMSG = String((char*)payload);
- 
-  #ifdef DEBUG
-  Serial.print("Mensagem chegou do tópico: ");
-  Serial.println(topic);
-  Serial.print("Mensagem:");
-  Serial.print(strMSG);
+
+
+  Serial.print("Mensagem chegou [");
+  Serial.print(topic);
+  Serial.print("] ");
+  for (int i = 0; i < length; i++) {
+    Serial.print((char)payload[i]);
+  }
   Serial.println();
-  Serial.println("-----------------------");
-   #endif
-  if (strMSG == "1") {
-   
-    enviaReed(); 
+
+ 
+  if ((char)payload[0] == '1') {
+    enviaReed();
     enviaDHT();
     enviaPir();
-  }
-  
-  Serial.println(); // Pula uma linha
+  } else if ((char)payload[0] == '0') {
+    Serial.println("ds");
+
+
+
 }
 
 void loop() {
   client.loop(); //Inicia o loop de conexão
+
+
 }
 void enviaReed() {
   int reedSwitchState = digitalRead(reed);  // Lê o valor do pino do sensor de efeito reed switch
   if (reedSwitchState == HIGH) {                     // Se o interruptor foi acionado
 
-     client.publish("casa/temperatura", "conectado");
-  } else {  
-    client.publish("casa/temperatura", "desconectado");
-   
-   
+    client.publish("casa/corredorPrincipal", "Porta fechada");
+  } else {
+    client.publish("casa/corredorPrincipal", "Porta abriu");
+
+
   }
-  delay(500);
+
 
 }
-void enviaPir(){
+void enviaPir() {
   int pirState = digitalRead(pir);  // lê o valor do pino do sensor PIR
   if (pirState == HIGH) {              // se o sensor detectou movimento
-   
-   client.publish("casa/temperatura", "Movimento detectado!");
-  } else {                       
-     client.publish("casa/temperatura", "Desligado");
+
+    client.publish("casa/corredorPrincipal", "Movimento detectado!");
+    delay(2000);
   }
-  
- }
+}
 
 void enviaDHT() {
   char MsgTemperaturaMQTT[10];
   float temperatura = dht.readTemperature();
 
- if (isnan(temperatura)) 
+  if (isnan(temperatura))
   {
-    #ifdef DEBUG
+#ifdef DEBUG
     Serial.println("Falha na leitura do dht11...");
-    #endif
-  } 
-  else 
+#endif
+  }
+  else
   {
-    #ifdef DEBUG
-    
-    Serial.print(" \n"); //quebra de linha
+#ifdef DEBUG
+
+    Serial.print(" \n");
     Serial.print("Temperatura: ");
     Serial.print(temperatura);
     Serial.println(" °C");
-    #endif
- 
-   
-    sprintf(MsgTemperaturaMQTT,"%f",temperatura);
-    client.publish("casa/temperatura", MsgTemperaturaMQTT);
+#endif
+
+
+    sprintf(MsgTemperaturaMQTT, "%f", temperatura);
+    client.publish("casa/corredorPrincipal", MsgTemperaturaMQTT);
+
+
+
+
+
+
+
   }
 }

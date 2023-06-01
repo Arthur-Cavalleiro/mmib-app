@@ -1,10 +1,19 @@
-import { Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoginPage from './pages/LoginPage/LoginPage.js';
+import AdmPage from './pages/AdmPage/AdmPage.js';
+import SupPage from './pages/SupPage/index.js';
+import ErrorPage from './pages/ErrorPage/ErrorPage.js';
 
-function App() {
+const App = () => {
   return (
-    <div>
-      <Outlet />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/dashboard" element={<AdmPage />} />
+        <Route path="/suporte" element={<SupPage />} />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

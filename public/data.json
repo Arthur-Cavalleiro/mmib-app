@@ -65,17 +65,12 @@
       ]
     }
   ],
-  "alarme": 0,
   "notificacoes": [
     {
+      "id": 1,
       "tituloNotificacao": "Temperatura",
-      "data": "17/05/2023",
-      "hora": "22:04"
-    },{
-      "tituloNotificacao": "Movimento",
-      "data": "17/05/2023",
-      "hora": "22:09"
-}
-    
+      "data": "31/05/2023",
+      "hora": "22:04:08"
+    }
   ]
 }
